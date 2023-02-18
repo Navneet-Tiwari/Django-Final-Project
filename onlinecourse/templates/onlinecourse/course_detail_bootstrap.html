@@ -42,14 +42,14 @@
     <!-- Page content -->
     <div class="container-fluid">
             <h2>{{ course.name }}</h2>
-            <div class="card-columns-vertical">
+            <!-- <div class="card-columns-vertical">
                 {% for lesson in course.lesson_set.all %}
                     <div class="card mt-1">
                         <div class="card-header"><h5>Lesson {{lesson.order|add:1}}: {{lesson.title}}</h5></div>
                         <div class="card-body">{{lesson.content}}</div>
                     </div>
                 {% endfor %}
-            </div>
+            </div> -->
             <!-- Task: show questions and choices -->
             <!-- <HINT> Use Bootstrap Collapse to hide exam first, more details could be found here
             https://www.w3schools.com/bootstrap4/bootstrap_collapse.asp-->
@@ -62,7 +62,8 @@
                 </div>
 
             -->
-            <!-- <div id="exam"> -->
+            <button type="button" class="btn  btn-block" style="background: #79aec8; color: #fff ;" data-toggle="collapse" data-target="#exam">Start Exam</button>
+            <div id="exam" class="collapse">
 
                 <!-- Click to expand elements within the collapse div -->
                 
@@ -125,6 +126,7 @@
                         {% endfor %}
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
             </form>
+        </div>
 
             <!--Check here to see more details Bootstrap checkbox
              https://www.w3schools.com/bootstrap4/bootstrap_forms_inputs.asp-->
