@@ -22,7 +22,7 @@ class LessonInline(admin.StackedInline):
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
-    inlines = [LessonInline]
+    inlines = [LessonInline, QuestionInline]
     list_display = ('name', 'pub_date')
     list_filter = ['pub_date']
     search_fields = ['name', 'description']
@@ -32,7 +32,7 @@ class LessonAdmin(admin.ModelAdmin):
     list_display = ['title']
 
 class QuestionAdmin(admin.ModelAdmin):
-    # inlines = [ChoiceInline]
+    inlines = [ChoiceInline]
     list_display = ['question_text']
 
 class ChoiceAdmin(admin.ModelAdmin):
