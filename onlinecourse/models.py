@@ -135,7 +135,7 @@ class Choice(models.Model):
         (NO, 'No')
     ] 
     question = models.ForeignKey(Question, on_delete=models.CASCADE, default="")
-    choice_content = models.CharField(max_length=1000, default="")
+    choice_text = models.CharField(max_length=1000, default="")
     is_correct = models.CharField(max_length=3, choices=IS_CHOICE_CORRECT, default=NO)
 
 
