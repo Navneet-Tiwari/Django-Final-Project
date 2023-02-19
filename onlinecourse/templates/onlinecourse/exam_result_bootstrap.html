@@ -47,7 +47,7 @@
         <div class="alert alert-danger">
             <!--HINT Display failed info -->
             <p>
-                <strong>Failed</strong> Sorry, {{ user.username }} You have failed the exam with score {{int(grade)}} / 100
+                <strong>Failed</strong> Sorry, {{ user.username }} You have failed the exam with score {{grade}} / 100
             </p>
         </div>
         <a class="btn btn-link text-danger" href="{% url 'onlinecourse:course_details' course.id %}">Re-test</a>
@@ -63,20 +63,21 @@
                 <div class="card mt-1">
                     <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                     {% csrf_token %}
+                        <div class="card-body"> 
                         {% for choice in question.choice_set.all %}
                              
                                {% if choice.is_correct %}                               
                                    {% if choice.id in selected_choices %}
                                    
 
-                                    <div id="{{choice.id}}" class="success"> 
+                                    <div id="{{choice.id}}" class="alert alert-success"> 
                                         <span style="color: green">
                                             Correct answer : {{ choice.choice_text }}
                                         </span>
                                     </div>
                                     
                                  {% else %}
-                                    <div id="{{choice.id}}" class="warning"> 
+                                    <div id="{{choice.id}}" class="alert alert-warning"> 
                                         <span style="color: yellow">
                                             Not Selected : {{ choice.choice_text }}
                                         </span>
@@ -103,6 +104,7 @@
             </p>
             
         </div>
+    </div> 
     </div>
 </body>
 </html>

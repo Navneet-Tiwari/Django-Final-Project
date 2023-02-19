@@ -187,7 +187,7 @@ def show_exam_result(request, course_id, submission_id):
             grade = grade
             results.append({'questions': question, 'correct': False})
 
-    grade = (grade / total_score) * 100
+    grade = int((grade / total_score) * 100)
 
     context['course'] = course
     context['grade'] = grade
