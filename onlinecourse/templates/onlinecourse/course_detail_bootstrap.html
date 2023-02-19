@@ -103,9 +103,9 @@
             <input type="check" name="choice_{{choice.id}}" id="{{choice.id}}" ...>
             -->
             <!-- A choice submission form example -->
-            <!-- action="{% url 'onlinecourse:submit' %}" -->
-            <form id="questionform" action="{% url 'onlinecourse:submit' %}" method="post">
-                    <!-- ... for each question in the course ... -->
+            <form id="questionform" action="{% url 'onlinecourse:submit' course_id=course.id%}" method="post">
+                {% csrf_token %}    
+                <!-- ... for each question in the course ... -->
                         {% for question in course.question_set.all %}
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.question_text}}</h5></div>

@@ -121,7 +121,7 @@ def submit(request, course_id):
 
 
     # Create a submission object referring to the enrollment
-    Submission.objects.create(enrollment= enrollment,  mode='honor')
+    Submission.objects.create(enrollment= enrollment)
 
 
 

@@ -127,16 +127,10 @@ class Question(models.Model):
     # Choice content
     # Indicate if this choice of the question is a correct one or not
     # Other fields and methods you would like to design
-class Choice(models.Model):
-    YES = 'Yes'
-    NO = 'No'
-    IS_CHOICE_CORRECT = [
-        (YES, 'Yes'),
-        (NO, 'No')
-    ] 
+class Choice(models.Model):    
     question = models.ForeignKey(Question, on_delete=models.CASCADE, default="")
     choice_text = models.CharField(max_length=1000, default="")
-    is_correct = models.CharField(max_length=3, choices=IS_CHOICE_CORRECT, default=NO)
+    is_correct = models.BooleanField(default=False)
 
 
 
