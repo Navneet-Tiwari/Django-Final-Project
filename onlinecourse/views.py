@@ -115,26 +115,40 @@ def submit(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     user = request.user
     
+    def extract_answers(request):
+        submitted_anwsers = []
+        for key in request.POST:
+            if key.startswith('choice'):
+                value = request.POST[key]
+                choice_id = int(value)
+                submitted_anwsers.append(choice_id)
+        return submitted_anwsers
     #get the associated enrollment object created when the user enrolled the course
     enrollment = Enrollment.objects.get(user=user, course=course)
 
 
 
     # Create a submission object referring to the enrollment
-    Submission.objects.create(enrollment= enrollment)
+    submission = Submission.objects.create(enrollment= enrollment)
+
+    selected_choices = extract_answers(request)
+
+    submission.choices = selected_choices
+
+return HttpResponseRedirect(reverse(viewname='onlinecourse:show_exam_result', args=(course.id,submission.id))) 
 
 
 
 
 # <HINT> A example method to collect the selected choices from the exam form from the request object
-def extract_answers(request):
-   submitted_anwsers = []
-   for key in request.POST:
-       if key.startswith('choice'):
-           value = request.POST[key]
-           choice_id = int(value)
-           submitted_anwsers.append(choice_id)
-   return submitted_anwsers
+# def extract_answers(request):
+#    submitted_anwsers = []
+#    for key in request.POST:
+#        if key.startswith('choice'):
+#            value = request.POST[key]
+#            choice_id = int(value)
+#            submitted_anwsers.append(choice_id)
+#    return submitted_anwsers
 
 
 # <HINT> Create an exam result view to check if learner passed exam and show their question results and result for each question,
@@ -143,7 +157,10 @@ def extract_answers(request):
         # Get the selected choice ids from the submission record
         # For each selected choice, check if it is a correct answer or not
         # Calculate the total score
-#def show_exam_result(request, course_id, submission_id):
+def show_exam_result(request, course_id, submission_id):
+    course = get_object_or_404(Course, pk=course_id)
+    submission = get_object_or_404(Submission, pk=submission_id)
+
 
 
 
