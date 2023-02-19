@@ -70,17 +70,17 @@
                                    {% if choice.id in selected_choices %}
                                    
 
-                                    <div id="{{choice.id}}" class="alert alert-success"> 
-                                        <span style="color: green">
+                                    <div id="{{choice.id}}" class=".text-success"> 
+                                        
                                             Correct answer : {{ choice.choice_text }}
-                                        </span>
+                                        
                                     </div>
                                     
                                  {% else %}
-                                    <div id="{{choice.id}}" class="alert alert-warning"> 
-                                        <span style="color: yellow">
+                                    <div id="{{choice.id}}" class="text-warning"> 
+                                        
                                             Not Selected : {{ choice.choice_text }}
-                                        </span>
+                                        
                                     </div>
                                 {% endif %}
 
